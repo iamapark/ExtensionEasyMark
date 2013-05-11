@@ -6,24 +6,29 @@ div, td, th { color: black; }
 <meta charset="utf-8">
 </head>
 <body style="width: 400px">
-<div>Search Bookmarks: <input id="search"></div>
-<div id="bookmarks"></div>
-<div id="editdialog"></div>
-<div id="deletedialog"></div>
-<div id="adddialog"></div>
-
-<div id="loginForm">
-	ID: <input type="text" name="userId" id="userId"> </br>
-	PW: <input type="password" name="password" id="password"> </br>
-	<button id="loginButton">Login</button> </br>
-	<span id="loginResult"></span>
-</div>
-<div id="main">
-	<ul>
-		<li id="addBookMark">현재 페이지 북마크에 추가하기</li>
-		<li id="moveBookMark">북마크 옮기기</li>
-	</ul>
-</div>
+	<div id="loginForm">
+		ID: <input type="text" name="userId" id="userId"> </br>
+		PW: <input type="password" name="password" id="password"> </br>
+		<button id="loginButton">Login</button> </br>
+		<span id="loginResult"></span>
+	</div>
+	<div id="main">
+		<ul>
+			<li id="addBookMark">현재 페이지 북마크에 추가하기</li>
+			<li id="moveBookMark">북마크 옮기기</li>
+		</ul>
+	</div>
+	
+	<div id="bookMarkAdd">
+		URL:<input type="text" id="bookMarkAddURl" /> </br>
+		이름:<input type="text" id="bookMarkAddName" /> </br>
+		설명:<input type="text" id="bookMarkAddDesc" /> </br>
+		아이콘:<input type="file" id="bookMarkAddFile" /> </br>
+		<button id="bookMarkAddButton">추가</button>
+	</div>
+	<div id="bookMarkMove">
+		
+	</div>
 <script src="jquery.js"></script>
 <script src="back.js"></script>
 <script src="popup.js"></script>

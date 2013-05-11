@@ -1,5 +1,8 @@
+var loginUserId;
+
 var userCheckResult = function(data){
 	if(data.result == 'true'){ // 로그인 성공
+		loginUserId = data.userId;
 		console.log('로그인 성공');
 		$('#main').show();
 		$('#loginForm').hide();
@@ -26,6 +29,7 @@ $('#loginButton').click(function(){
 
 $('#addBookMark').click(function(){
 	alert('addBookMark');
+	$('#bookMarkAdd').show();
 });
 
 $('#moveBookMark').click(function(){
@@ -33,3 +37,4 @@ $('#moveBookMark').click(function(){
 });
 
 $('#main').hide();
+$('#bookMarkAdd').hide();
