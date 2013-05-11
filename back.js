@@ -27,14 +27,3 @@ $('#loginButton').click(function(){
 	});
   });
 
-$('#addBookMark').click(function(){
-	alert('addBookMark');
-	$('#bookMarkAdd').show();
-});
-
-$('#moveBookMark').click(function(){
-	alert('moveBookMark');
-});
-
-$('#main').hide();
-$('#bookMarkAdd').hide();
