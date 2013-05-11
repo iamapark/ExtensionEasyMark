@@ -15,18 +15,30 @@ $('#bookMarkAddButton').click(function(){
 	var url = $('#bookMarkAddURl').val();
 	var name = $('#bookMarkAddName').val();
 	var desc = $('#bookMarkAddDesc').val();
-	console.log('name: ' + name);
-	$.ajax({
-		url: 'http://localhost:8080/EasyMark/extensionAddMark',
-		dataType:'json',
-		data:{
-			url: url,
-			name: name,
-			desc: desc
-		}
-	}).done(function(){
-		alert('추가 성공!!');
-	});
+	var category = $('#bookMarkAddCategory').val();
+	var filename = $('#bookMarkAddFile').val();
+	
+	if(filename == ''){
+		$.ajax({
+			url: 'http://localhost:8080/EasyMark/addMark',
+			dataType:'json',
+			data:{
+				url: url,
+				name: name,
+				description: desc,
+				category:category
+			}
+		}).done(function(){
+			alert('추가 성공!!');
+		});
+	}else{
+		$("#bookMarkAddForm").ajaxSubmit({
+        	dataType:'html',
+        	success:function(data,rst){
+        		alert('추가 성공');
+        	}
+		});
+	}
 });
 
 $('#moveBookMark').click(function(){
