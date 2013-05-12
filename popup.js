@@ -1,13 +1,8 @@
 $('#addBookMark').click(function(){
-	alert('addBookMark3');
 	$('#bookMarkAdd').show();
 	chrome.tabs.query({active: true}, function(data) {
-		kaka = data;
-		console.log(data);
-		
 		$('#bookMarkAddURl').val(data[0].url);
 		$('#bookMarkAddName').val(data[0].title);
-		
 	} );
 });
 
@@ -16,7 +11,7 @@ $('#bookMarkAddButton').click(function(){
 	var name = $('#bookMarkAddName').val();
 	var desc = $('#bookMarkAddDesc').val();
 	var category = $('#bookMarkAddCategory').val();
-	var filename = $('#bookMarkAddFile').val();
+	var filename = $('#addBookMarkImage').val();
 	
 	if(filename == ''){
 		$.ajax({
@@ -26,10 +21,14 @@ $('#bookMarkAddButton').click(function(){
 				url: url,
 				name: name,
 				description: desc,
-				category:category
+				category:category,
+				userId:loginUserId
 			}
-		}).done(function(){
+		}).done(function(d){
 			alert('추가 성공!!');
+		}).fail(function(e){
+			console.log(e);
+			kaka = e;
 		});
 	}else{
 		$("#bookMarkAddForm").ajaxSubmit({

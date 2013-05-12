@@ -1,7 +1,7 @@
 {
-  "name": "My Bookmarks",
+  "name": "EasyMark",
   "version": "1.0",
-  "description": "A browser action with a popup dump of all bookmarks, including search, add, edit and delete.",
+  "description": "easymark.pe.kr에 손쉽게 북마크할 수 있는 확장프로그램입니다.",
   "permissions": [
     "bookmarks",
     "http://*/*", 
@@ -15,7 +15,7 @@
   "content_security_policy": "script-src 'self' http://localhost:8080/EasyMark/; object-src 'self'",
   
   "browser_action": {
-      "default_title": "My Bookmarks.",
+      "default_title": "EasyMark",
       "default_icon": "icon.png",
       "default_popup": "popup.html"
   },
