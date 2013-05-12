@@ -1,20 +1,192 @@
 <html>
 <head>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="css/styles.css">
 <style>
-div, td, th { color: black; }
-input{
-	width:350px;
+*{ margin:0; padding:0;}
+
+body{ font:100% normal Arial, Helvetica, sans-serif; background:#161712;}
+
+form,input,select,textarea{margin:0; padding:0; color:#ffffff;}
+
+
+
+div.box {
+
+margin:0 auto;
+
+width:500px;
+
+background:#222222;
+
+position:relative;
+
+top:50px;
+
+border:1px solid #262626;
+
 }
-</style>
+
+
+
+div.box h1 { 
+
+color:#ffffff;
+
+font-size:18px;
+
+text-transform:uppercase;
+
+padding:5px 0 5px 5px;
+
+border-bottom:1px solid #161712;
+
+border-top:1px solid #161712; 
+
+}
+
+
+
+div.box label {
+
+width:100%;
+
+display: block;
+
+background:#1C1C1C;
+
+border-top:1px solid #262626;
+
+border-bottom:1px solid #161712;
+
+padding:10px 0 10px 0;
+
+}
+
+
+
+div.box label span {
+
+display: block;
+
+color:#bbbbbb;
+
+font-size:12px;
+
+float:left;
+
+width:100px;
+
+text-align:right;
+
+padding:5px 20px 0 0;
+
+}
+
+
+
+div.box .input_text {
+
+padding:10px 10px;
+
+width:200px;
+
+background:#262626;
+
+border-bottom: 1px double #171717;
+
+border-top: 1px double #171717;
+
+border-left:1px double #333333;
+
+border-right:1px double #333333;
+
+}
+
+
+
+div.box .message{
+
+padding:7px 7px;
+
+width:350px;
+
+background:#262626;
+
+border-bottom: 1px double #171717;
+
+border-top: 1px double #171717;
+
+border-left:1px double #333333;
+
+border-right:1px double #333333;
+
+overflow:hidden;
+
+height:150px;
+
+}
+
+
+
+div.box .button
+
+{
+
+margin:0 0 10px 0;
+
+padding:4px 7px;
+
+background:#CC0000;
+
+border:0px;
+
+position: relative;
+
+top:10px;
+
+left:382px;
+
+width:100px;
+
+border-bottom: 1px double #660000;
+
+border-top: 1px double #660000;
+
+border-left:1px double #FF0033;
+
+border-right:1px double #FF0033;
+
+}</style>
 <meta charset="utf-8">
 </head>
-<body style="width: 400px">
-	<div id="loginForm">
-		ID: <input type="text" name="userId" id="userId"> </br>
-		PW: <input type="password" name="password" id="password"> </br>
+<body>
+
+	<div id="loginForm" class="container">
+		
+		<label for="name">Username:</label>
+		
+		<input type="name" name="userId" id="userId">
+		
+		<label for="username">Password:</label>
+		
+		<p><a href="#">Forgot your password?</a>
+		
+		<input type="password" name="password" id="password">
+		
+		<div id="lower">
+		
+		<input type="checkbox"><label class="check" for="checkbox">Keep me logged in</label>
+		
 		<button id="loginButton">Login</button> </br>
 		<span id="loginResult"></span>
+		</div>
+		
+		
+		
 	</div>
+
 	<div id="main">
 		<ul>
 			<li id="addBookMark">현재 페이지 북마크에 추가하기</li>
@@ -22,7 +194,7 @@ input{
 		</ul>
 	</div>
 	
-	<div id="bookMarkAdd">
+	<!-- <div id="bookMarkAdd" class="bookmarkAdd">
 		<form action="addMark" id="bookMarkAddForm" method="POST" enctype="multipart/form-data">
 		URL:<input type="text" id="bookMarkAddURl" name="url"/> </br>
 		이름:<input type="text" id="bookMarkAddName" name="name"/> </br>
@@ -35,7 +207,38 @@ input{
 		아이콘:<input type="file" id="addBookMarkImage" name="addBookMarkImage" /> </br>
 		<button id="bookMarkAddButton">추가</button>
 		</form>
-	</div>
+	</div> -->
+
+	<form action="addMark" id="bookMarkAddForm" method="POST" enctype="multipart/form-data">
+
+		<div class="box" id="bookMarkAdd">
+
+			<h1>북마크 등록</h1>
+
+			<label> <span>URL</span> 
+				<input type="text" class="input_text" id="bookMarkAddURl" name="url" />
+			</label>
+			
+			<label> <span>이름</span> 
+				<input type="text" class="input_text" id="bookMarkAddName" name="name" />
+			</label> 
+			
+			<label> <span>카테고리</span>
+				<select id="bookMarkAddCategory" name="category">
+					<option value="sports">스포츠</option>
+					<option value="movie">movie</option>
+				</select>
+			</label>
+			<label> <span>아이콘 이미지</span>
+				<input type="file" id="addBookMarkImage" name="addBookMarkImage" />
+			</label>
+			<label> <span>설명</span> 
+				<textarea class="message" id="bookMarkAddDesc" name="description"></textarea> 
+			</label>
+			<button class="button" id="bookMarkAddButton">Add</button>
+		</div>
+
+	</form>
 	<div id="bookMarkMove">
 		
 	</div>
