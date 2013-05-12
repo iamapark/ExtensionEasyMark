@@ -6,7 +6,8 @@ $('#addBookMark').click(function(){
 	} );
 });
 
-$('#bookMarkAddButton').click(function(){
+$('#bookMarkAddButton').click(function(e){
+	e.preventDefault();
 	var url = $('#bookMarkAddURl').val();
 	var name = $('#bookMarkAddName').val();
 	var desc = $('#bookMarkAddDesc').val();
@@ -14,6 +15,7 @@ $('#bookMarkAddButton').click(function(){
 	var filename = $('#addBookMarkImage').val();
 	
 	if(filename == ''){
+		alert('no file');
 		$.ajax({
 			url: 'http://localhost:8080/EasyMark/addMark',
 			dataType:'json',
@@ -25,12 +27,11 @@ $('#bookMarkAddButton').click(function(){
 				userId:loginUserId
 			}
 		}).done(function(d){
-			alert('추가 성공!!');
-		}).fail(function(e){
-			console.log(e);
 			kaka = e;
+			alert('추가 성공!!');
 		});
 	}else{
+		alert('file');
 		$("#bookMarkAddForm").ajaxSubmit({
         	dataType:'html',
         	success:function(data,rst){
