@@ -9,19 +9,19 @@ var recordingStart = function(){
 	chrome.experimental.speechInput.isRecording(function(recording) {
 		alert('녹음 시작!!');
 	    if (!recording) {
-	      chrome.experimental.speechInput.start({}, function() {
-	        if (chrome.runtime.lastError) {
-	          alert("Couldn't start speech input: " +
-	              chrome.runtime.lastError.message);
-	         // setStartIcon();
-	        } else {
-	          //setStopIcon();
-	        }
-	      });
+	      	chrome.experimental.speechInput.start({}, function() {
+	      		if (chrome.runtime.lastError) {
+	      			alert("음성인식을 시작할 수 없습니다: " +
+	      					chrome.runtime.lastError.message);
+	      			setStopIcon();
+	      		} else {
+	      			setStartIcon();
+	      		}
+	      	});
 	    } else {
 	    	alert('녹음이 안되영');
-	      chrome.experimental.speechInput.stop(function() {
-	        //setStartIcon();
+	    	setStopIcon();
+	    	chrome.experimental.speechInput.stop(function() {
 	      });
 	    }
 	  });
@@ -29,9 +29,8 @@ var recordingStart = function(){
 
 chrome.experimental.speechInput.onResult.addListener(function(result) {
 	alert(result.hypotheses[0].utterance);
-	//setStartIcon();
+	setStopIcon();
   
-	//chrome.tabs.create({url:'http://www.naver.com'});
 	var data = encodeURI(result.hypotheses[0].utterance);
 	$.ajax({
 	    url : "http://localhost:8080/EasyMark/speech",
@@ -50,13 +49,12 @@ var speechCallback = function(data){
 	if(data.result == 'true'){
 		//r==1일때 현재 페이지를 북마크에 추가한다.
 		if(data.r == '1'){
-			playTTS('북마크 추가를 진행합니다.');
 			chrome.tabs.query({active: true}, function(data) {
 				var url = data[0].url;
 				var title = encodeURI(data[0].title);
 				var userId = localStorage.getItem('MEMBERID');
 				if(userId == null){
-					playTTS('로그인을 해야합니다.');
+					playTTS('로그인을 한 후에 다시 추가해주세요.');
 					return;
 				}
 				$.ajax({
@@ -107,3 +105,11 @@ var playTTS = function(text){
 	var tag = '<embed type="audio/mpeg" src="http://www.neospeech.com/GetAudio1.ashx?speaker=10&content='+escape(text)+'" hidden="true" volume="0"></embed>';
 	$('html').append(tag);
 };
+
+function setStartIcon() {
+	chrome.browserAction.setIcon({ path: "start.png" });
+}
+
+function setStopIcon() {
+	chrome.browserAction.setIcon({ path: "icon.png" });
+}
