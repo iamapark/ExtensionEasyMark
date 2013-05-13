@@ -1,8 +1,10 @@
 {
   "name": "EasyMark",
-  "version": "1.0",
+  "version": "1.1",
   "description": "easymark.pe.kr에 손쉽게 북마크할 수 있는 확장프로그램입니다.",
   "permissions": [
+  	"experimental",
+  	"input",
     "bookmarks",
     "http://*/*", 
     "https://*/*",
@@ -10,8 +12,9 @@
   ],
   
   "background": {
-  	"scripts": ["back.js"]
+  	"scripts": ["jquery.js", "back.js"]
    },
+   
   "content_security_policy": "script-src 'self' http://localhost:8080/EasyMark/; object-src 'self'",
   
   "browser_action": {
@@ -19,5 +22,19 @@
       "default_icon": "icon.png",
       "default_popup": "popup.html"
   },
+  
+  "commands": {
+    "recording": {
+      "suggested_key": { "default": "Alt+R" },
+      "description": "Send a 'toggle-feature' event to the extension"
+    },
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Alt+S",
+        "mac": "MacCtrl+Shift+R"
+      }
+    }
+  },
+  
   "manifest_version": 2
 }
