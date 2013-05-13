@@ -34,7 +34,7 @@ $('#bookMarkAddButton').click(function(e){
 	if(filename == ''){
 		alert('no file');
 		$.ajax({
-			url: 'http://localhost:8080/EasyMark/addMark',
+			url: targetUrl + 'addMark',
 			dataType:'json',
 			data:{
 				url: url,
@@ -60,12 +60,12 @@ $('#bookMarkAddButton').click(function(e){
 
 //아이디와 비번을 입력하고 로그인 버튼을 눌렀을 때 서버측에서 호출하는 콜백 함수
 var userCheckResult = function(data){
-	kaka = data;
 	if(data.result == 'true'){ // 로그인 성공
 		if($('#loginIdKeep').is(':checked')){
-			localStorage.setItem('MEMBERID', data.userId);
+			localStorage.setItem('MEMBERID', data.userd);
+		}else{
+			loginUserId = data.userd;
 		}
-		console.log('로그인 성공');
 		$('#main').show();
 		$('#loginForm').hide();
 	}else{ // 로그인 실패
@@ -78,7 +78,7 @@ $('#loginButton').click(function(){
 	 userId = $('#userId').val();
 	 password = $('#password').val();
 	 $.ajax({
-	    url : "http://localhost:8080/EasyMark/extensionUserCheck",
+	    url : targetUrl + 'extensionUserCheck',
 	    dataType : "jsonp",
 	    jsonp : "callback",
 	    jsonpCallback:"userCheckResult",

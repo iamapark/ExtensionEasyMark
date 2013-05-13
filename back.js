@@ -1,3 +1,4 @@
+var targetUrl = 'http://localhost:8080/EasyMark/';
 chrome.commands.onCommand.addListener(function(command) {
   console.log('Command:', command);
   if(command == 'recording')
@@ -33,7 +34,7 @@ chrome.experimental.speechInput.onResult.addListener(function(result) {
   
 	var data = encodeURI(result.hypotheses[0].utterance);
 	$.ajax({
-	    url : "http://localhost:8080/EasyMark/speech",
+	    url : targetUrl + 'speech',
 	    dataType : "jsonp",
 	    jsonp : "callback",
 	    jsonpCallback:"speechCallback",
@@ -58,7 +59,7 @@ var speechCallback = function(data){
 					return;
 				}
 				$.ajax({
-					url: 'http://localhost:8080/EasyMark/addMark',
+					url: targetUrl + 'addMark',
 					dataType:'jsonp',
 					jsonp : "callback",
 				    jsonpCallback:function(data){
