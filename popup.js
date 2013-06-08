@@ -16,6 +16,7 @@ function init(){
 //현재 페이지 북마크에 추가하기 클릭했을 때
 $('#addBookMark').click(function(){
 	$('#bookMarkAdd').show();
+	$('#main').hide();
 	chrome.tabs.query({active: true}, function(data) {
 		$('#bookMarkAddURl').val(data[0].url);
 		$('#bookMarkAddName').val(data[0].title);
@@ -32,7 +33,6 @@ $('#bookMarkAddButton').click(function(e){
 	var filename = $('#addBookMarkImage').val();
 	
 	if(filename == ''){
-		alert('no file');
 		$.ajax({
 			url: targetUrl + 'addMark',
 			dataType:'json',

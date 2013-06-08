@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <head>
+	
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="css/login.css">
 	<link rel="stylesheet" href="css/inputForm.css">
+	<link rel="stylesheet" href="css/style.css">
+	
 	<meta charset="utf-8">
 </head>
 <body>
@@ -33,11 +36,28 @@
 	</div>
 
 	<div id="main">
-		<ul>
-			<li id="addBookMark">현재 페이지 북마크에 추가하기</li>
-			<li id="moveBookMark">북마크 옮기기</li>
-			<li id="logout">로그 아웃</li>
-		</ul>
+		<nav>
+			<ul class="nav">
+				<li id="addBookMark">
+					<a href="#">
+						<img style="width:65px;" src="img/bookmark_add.png">
+						<span style="position: absolute; display: block; top: 30px; left: 30px;">북마크 추가</span>
+					</a>
+				</li>
+				<li id="moveBookMark">
+					<a href="#">
+						<img src="img/carry-home-green-icon.png" style="width:65px;">
+						<span style="display:block; position:absolute; top: 32px; left: 19px;">북마크 옮기기</span>
+					</a>
+				</li>
+				<li id="logout">
+					<a href="#">
+						<img src="img/logout-icon.png" style="width:65px;">
+						<span style="display:block; position:absolute; top: 36px; left: 34px;">로그 아웃</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
 	</div>
 	
 	<!-- <div id="bookMarkAdd" class="bookmarkAdd">
@@ -69,12 +89,8 @@
 				<input type="text" class="input_text" id="bookMarkAddName" name="name" />
 			</label> 
 			
-			<label> <span>카테고리</span>
-				<select id="bookMarkAddCategory" name="category">
-					<option value="sports">스포츠</option>
-					<option value="movie">movie</option>
-				</select>
-			</label>
+			<input type="hidden" value="0" id="bookMarkAddCategory" name="category">
+
 			<label> <span>아이콘 이미지</span>
 				<input type="file" id="addBookMarkImage" name="addBookMarkImage" />
 			</label>
@@ -90,6 +106,7 @@
 	</div>
 	<div id="ttsTarget" style="display:none;"></div>
 <script src="jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script src="back.js"></script>
 <script src="popup.js"></script>
 </body>
