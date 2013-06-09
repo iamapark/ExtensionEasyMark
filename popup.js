@@ -48,7 +48,6 @@ $('#bookMarkAddButton').click(function(e){
 			alert('추가 성공!!');
 		});
 	}else{
-		alert('file');
 		$("#bookMarkAddForm").ajaxSubmit({
         	dataType:'html',
         	success:function(data,rst){
@@ -62,7 +61,7 @@ $('#bookMarkAddButton').click(function(e){
 var userCheckResult = function(data){
 	if(data.result == 'true'){ // 로그인 성공
 		if($('#loginIdKeep').is(':checked')){
-			localStorage.setItem('MEMBERID', data.userd);
+			localStorage.setItem('MEMBERID', data.userId);
 		}else{
 			loginUserId = data.userd;
 		}

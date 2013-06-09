@@ -8,7 +8,9 @@ chrome.commands.onCommand.addListener(function(command) {
 
 var recordingStart = function(){
 	chrome.experimental.speechInput.isRecording(function(recording) {
-		alert('녹음 시작!!');
+		/*alert('녹음 시작!!');*/
+		playStart();
+		
 	    if (!recording) {
 	      	chrome.experimental.speechInput.start({}, function() {
 	      		if (chrome.runtime.lastError) {
@@ -29,7 +31,6 @@ var recordingStart = function(){
 };
 
 chrome.experimental.speechInput.onResult.addListener(function(result) {
-	alert(result.hypotheses[0].utterance);
 	setStopIcon();
   
 	var data = encodeURI(result.hypotheses[0].utterance);
@@ -54,8 +55,8 @@ var speechCallback = function(data){
 				var url = data[0].url;
 				var title = encodeURI(data[0].title);
 				var userId = localStorage.getItem('MEMBERID');
-				if(userId == null){
-					playTTS('로그인을 한 후에 다시 추가해주세요.');
+				if(userId == undefined){
+					playTTS('로그인을 한 후에 다시 시도 해주세요.');
 					return;
 				}
 				$.ajax({
@@ -71,7 +72,7 @@ var speechCallback = function(data){
 						url: url,
 						name: title,
 						description: '',
-						category:'',
+						category:0,
 						userId: userId
 					}
 				});
@@ -93,9 +94,17 @@ var speechCallback = function(data){
 			playTTS('검색 모드를 진행합니다.');
 		}
 		
+		// r==4 북마크 추가 후 '확인' 이라고 대답했을 때
+		else if(data.r == '4'){
+			// 탭 중에서 easymark에 접속되어 있는 탭이 있을 경우 해당 탭을 띄우고
+			// 아닐 경우 새로운 탭에서 easymark 페이지를 띄운다.(로그인 되어 있어야 함)
+			
+		}
+		
 		// 예약어가 아닐 경우
 		else if(data.r == 'false'){
 			playTTS('다시 한 번 말씀해주세요.');
+			setStopIcon();
 			recordingStart();
 		}
 	}
@@ -104,6 +113,11 @@ var speechCallback = function(data){
 // 인자로 전달받는 텍스트 값을 TTS화한다.
 var playTTS = function(text){
 	var tag = '<embed type="audio/mpeg" src="http://www.neospeech.com/GetAudio1.ashx?speaker=10&content='+escape(text)+'" hidden="true" volume="0"></embed>';
+	$('html').append(tag);
+};
+
+var playStart = function(){
+	var tag = '<embed type="audio/mpeg" src="start_sound.mp3" hidden="true" volume="0"></embed>';
 	$('html').append(tag);
 };
 
