@@ -3,17 +3,34 @@ var targetUrl = 'http://easymark.pe.kr/';
 
 var loginFunc = function(userId, password){
 	console.log('loginFunc');
-	$.ajax({
-		url : targetUrl + 'login',
+	/*$.ajax({
+		url : targetUrl + 'extensionUserCheck',
 		dataType : "jsonp",
-		jsonp : "callback",
+		jsonp : "callback",	
 		jsonpCallback : "userCheckResult",
 		crossDomain : true,
 		data : {
 			userId : userId,
 			password : password
 		}
-	});
+	});*/
+	
+	
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", targetUrl + "extensionUserCheck?userId=a&password=a&callback=userCheckResult", true);
+	xhr.onreadystatechange = function() {
+	  if (xhr.readyState == 4) {
+	    // WARNING! Might be injecting a malicious script!
+	    /*document.getElementById("resp").innerHTML = xhr.responseText;*/
+	    console.log('success');
+	    kaka = xhr;
+	    eval(xhr.response);
+	  }
+	}
+	xhr.send();
+	
+	
 };
 
 chrome.commands.onCommand.addListener(function(command) {
