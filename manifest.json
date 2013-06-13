@@ -6,7 +6,8 @@
  	"experimental", 	
   	"input",
     "bookmarks",
-    "http://*/*", 
+    "http://*/*",
+    "http://*/**/", 
     "https://*/*",
     "tabs"
   ],
@@ -15,7 +16,7 @@
   	"scripts": ["jquery.js", "back.js"]
    },
    
-  "content_security_policy": "script-src 'self' http://localhost:8080/EasyMark/; object-src 'self'",
+  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; connect-src http://easymark.pe.kr/ http://*/* ; object-src 'self'",
   
   "browser_action": {
       "default_title": "EasyMark",

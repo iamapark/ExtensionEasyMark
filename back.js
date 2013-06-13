@@ -1,7 +1,24 @@
-var targetUrl = 'http://localhost:8080/EasyMark/';
+//var targetUrl = 'http://localhost:8080/EasyMark/';
+var targetUrl = 'http://easymark.pe.kr/';
+
+var loginFunc = function(userId, password){
+	console.log('loginFunc');
+	$.ajax({
+		url : targetUrl + 'login',
+		dataType : "jsonp",
+		jsonp : "callback",
+		jsonpCallback : "userCheckResult",
+		crossDomain : true,
+		data : {
+			userId : userId,
+			password : password
+		}
+	});
+};
+
 chrome.commands.onCommand.addListener(function(command) {
-  console.log('Command:', command);
-  if(command == 'recording')
+	console.log('Command:', command);
+	if(command == 'recording')
 	  recordingStart();
 });
 
